@@ -1,0 +1,28 @@
+{
+    "name": "kvg-blog-api-backend",
+    "version": "1.0.0",
+    "description": "This project was created to consolidate knowledge about REST API, Database manipulation with Prisma, API security with JWT.",
+    "main": "app.js",
+    "scripts": {
+        "dev": "node app.js --watch",
+        "start": "node app.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/KVG24/kvg-blog-api-backend.git"
+    },
+    "author": "KVG24",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/KVG24/kvg-blog-api-backend/issues"
+    },
+    "homepage": "https://github.com/KVG24/kvg-blog-api-backend#readme",
+    "dependencies": {
+        "@prisma/client": "^6.16.3",
+        "dotenv": "^17.2.3",
+        "express": "^5.1.0"
+    },
+    "devDependencies": {
+        "prisma": "^6.16.3"
+    }
+}
