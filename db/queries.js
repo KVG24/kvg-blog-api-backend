@@ -3,12 +3,11 @@ const { PrismaClient } = require("../generated/prisma");
 const prisma = new PrismaClient();
 
 async function getAllPosts() {
-    const posts = await prisma.post.findMany();
-    return posts;
+    return await prisma.post.findMany();
 }
 
 async function getPost(id) {
-    const post = await prisma.post.findUnique({
+    return await prisma.post.findUnique({
         where: {
             id,
         },
@@ -16,11 +15,10 @@ async function getPost(id) {
             comments: true,
         },
     });
-    return post;
 }
 
 async function createPost(title, content, published) {
-    await prisma.post.create({
+    return await prisma.post.create({
         data: {
             title,
             content,
@@ -38,7 +36,7 @@ async function deletePost(id) {
 }
 
 async function createComment(creator, text, postId) {
-    await prisma.comment.create({
+    return await prisma.comment.create({
         data: {
             creator,
             text,
