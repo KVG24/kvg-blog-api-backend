@@ -28,9 +28,22 @@ async function createPost(title, content, published) {
 }
 
 async function deletePost(id) {
-    await prisma.post.delete({
+    return await prisma.post.delete({
         where: {
             id,
+        },
+    });
+}
+
+async function editPost(id, title, content, published) {
+    return await prisma.post.update({
+        where: {
+            id,
+        },
+        data: {
+            title,
+            content,
+            published,
         },
     });
 }
@@ -46,9 +59,20 @@ async function createComment(creator, text, postId) {
 }
 
 async function deleteComment(id) {
-    await prisma.comment.delete({
+    return await prisma.comment.delete({
         where: {
             id,
+        },
+    });
+}
+
+async function editComment(id, text) {
+    return await prisma.comment.update({
+        where: {
+            id,
+        },
+        data: {
+            text,
         },
     });
 }
@@ -58,6 +82,8 @@ module.exports = {
     getPost,
     createPost,
     deletePost,
+    editPost,
     createComment,
     deleteComment,
+    editComment,
 };
