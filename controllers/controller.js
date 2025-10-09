@@ -25,7 +25,8 @@ async function getPost(req, res) {
 
 async function createPost(req, res) {
     try {
-        const { title, content, published } = req.body;
+        const { title, content } = req.body;
+        const published = req.body.published === "on";
         const newPost = await db.createPost(title, content, published);
         res.status(201).json(newPost);
     } catch (err) {
