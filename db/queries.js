@@ -77,6 +77,14 @@ async function editComment(id, text) {
     });
 }
 
+async function getUserByUsername(username) {
+    return await prisma.user.findUnique({
+        where: {
+            username,
+        },
+    });
+}
+
 module.exports = {
     getAllPosts,
     getPost,
@@ -86,4 +94,5 @@ module.exports = {
     createComment,
     deleteComment,
     editComment,
+    getUserByUsername,
 };
