@@ -1,9 +1,18 @@
 const express = require("express");
 const router = require("./routes/router");
-const db = require("./db/queries");
+const cors = require("cors");
+require("dotenv").config;
 
 // Initiate main express app
 const app = express();
+
+// CORS config
+// Allow requests from frontend
+app.use(
+    cors({
+        origin: process.env.FRONTEND_ORIGIN,
+    })
+);
 
 // Parsing json and form data
 app.use(express.json());
