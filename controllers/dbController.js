@@ -25,9 +25,14 @@ async function getPost(req, res) {
 
 async function createPost(req, res) {
     try {
-        const { title, content } = req.body;
+        const { title, description, content } = req.body;
         const published = req.body.published === "on";
-        const newPost = await db.createPost(title, content, published);
+        const newPost = await db.createPost(
+            title,
+            description,
+            content,
+            published
+        );
         res.status(201).json(newPost);
     } catch (err) {
         console.error("Error creating post: " + err);
@@ -51,10 +56,11 @@ async function deletePost(req, res) {
 
 async function editPost(req, res) {
     try {
-        const { title, content, published } = req.body;
+        const { title, description, content, published } = req.body;
         const editedPost = await db.editPost(
             Number(req.params.postId),
             title,
+            description,
             content,
             published
         );

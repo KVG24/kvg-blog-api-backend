@@ -17,10 +17,11 @@ async function getPost(id) {
     });
 }
 
-async function createPost(title, content, published) {
+async function createPost(title, description, content, published) {
     return await prisma.post.create({
         data: {
             title,
+            description,
             content,
             published,
         },
@@ -35,13 +36,14 @@ async function deletePost(id) {
     });
 }
 
-async function editPost(id, title, content, published) {
+async function editPost(id, title, description, content, published) {
     return await prisma.post.update({
         where: {
             id,
         },
         data: {
             title,
+            description,
             content,
             published,
         },
