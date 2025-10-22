@@ -56,7 +56,8 @@ async function deletePost(req, res) {
 
 async function editPost(req, res) {
     try {
-        const { title, description, content, published } = req.body;
+        const { title, description, content } = req.body;
+        const published = req.body.published === "on";
         const editedPost = await db.editPost(
             Number(req.params.postId),
             title,
