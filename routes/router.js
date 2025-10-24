@@ -18,7 +18,7 @@ router.get("/posts/:postId", getPost);
 router.post("/posts", authenticate, createPost);
 router.delete("/posts/:postId", authenticate, deletePost);
 router.put("/posts/:postId", authenticate, editPost);
-router.post("/posts/:postId/comments", authenticate, createComment);
+router.post("/posts/:postId/comments", createComment);
 router.delete(
     "/posts/:postId/comments/:commentId",
     authenticate,
