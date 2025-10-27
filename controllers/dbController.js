@@ -111,6 +111,7 @@ async function editComment(req, res) {
     try {
         const editedComment = await db.editComment(
             Number(req.params.commentId),
+            req.body.creator,
             req.body.text
         );
         res.status(200).json(editedComment);

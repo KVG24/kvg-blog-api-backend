@@ -3,7 +3,11 @@ const { PrismaClient } = require("../generated/prisma");
 const prisma = new PrismaClient();
 
 async function getAllPosts() {
-    return await prisma.post.findMany();
+    return await prisma.post.findMany({
+        orderBy: {
+            createdAt: "asc",
+        },
+    });
 }
 
 async function getPost(id) {
@@ -12,7 +16,11 @@ async function getPost(id) {
             id,
         },
         include: {
-            comments: true,
+            comments: {
+                orderBy: {
+                    createdAt: "asc",
+                },
+            },
         },
     });
 }
@@ -68,12 +76,13 @@ async function deleteComment(id) {
     });
 }
 
-async function editComment(id, text) {
+async function editComment(id, creator, text) {
     return await prisma.comment.update({
         where: {
             id,
         },
         data: {
+            creator,
             text,
         },
     });
