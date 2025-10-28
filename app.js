@@ -7,10 +7,18 @@ require("dotenv").config;
 const app = express();
 
 // CORS config
-// Allow requests from frontend
+const allowedOrigins = [process.env.CLIENT_ORIGIN, process.env.ADMIN_ORIGIN];
+
 app.use(
     cors({
-        origin: process.env.FRONTEND_ORIGIN,
+        origin: function (origin, callback) {
+            if (!origin || allowedOrigins.includes(origin)) {
+                callback(null, true);
+            } else {
+                callback(new Error("Not allowed by CORS"));
+            }
+        },
+        credentials: true,
     })
 );
 
